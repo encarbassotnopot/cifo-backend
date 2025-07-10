@@ -7,7 +7,7 @@ label {display: inline-block; width: 150px; vertical-align: top;}
 input {margin-right: 20px;}
 .card {width: 80%; margin: auto; padding: 20px; border: 2px solid black; border-radius: 5px; background: white; box-shadow: 2px 2px 2px grey;}
 aside {width: 15px; height: 15px; display: inline-block; margin-right: 2px;}
-.rojo {background-color: red;}
-.amarillo {background-color: yellow;}
-.verde {background-color: green;}
-.azul {background-color: blue;}
+.roig {background-color: red;}
+.groc {background-color: yellow;}
+.verd {background-color: green;}
+.blau {background-color: blue;}
