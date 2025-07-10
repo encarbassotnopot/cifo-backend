@@ -11,3 +11,5 @@ aside {width: 15px; height: 15px; display: inline-block; margin-right: 2px;}
 .groc {background-color: yellow;}
 .verd {background-color: green;}
 .blau {background-color: blue;}
+
+.error {color: red;}
