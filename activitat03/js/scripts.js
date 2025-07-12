@@ -1,18 +1,18 @@
-//activar listener del boton de baja de todas las personas (si no se ha utilizado un onclick en linea)
+//activar listener del botó de baixa de totes les persones (si no s'ha utilitzat un onclick en línia)
 
-//activar listener de los botones de modificación de persona (si no se ha utilizado un onclick en linea)
+//activar listener dels botons de modificació de persona (si no s'ha utilitzat un onclick en línia)
 
 
-//definir función de confirmación de baja
+//definir funció de confirmació de baixa
 
-//definir función para trasladar los datos de la persona a modificar al formulario oculto
-function modificarPersonas() {
-	//situarnos en la etiqueta tr que corresponda a la fila donde se encuentra el botón
+//definir funció per traslladar les dades de la persona a modificar al formulari ocult
+function modificarPersones() {
+	//situar-nos en l'etiqueta tr que correspongui a la fila on es troba el botó
 
-	//recuperar los datos de la persona
-	
-	//trasladar los datos al formulario oculto
+	//recuperar les dades de la persona
 
-	//submit del formulario
-	
+	//traslladar les dades al formulari ocult
+
+	//submit del formulari
+
 }

@@ -1,7 +1,7 @@
-<?php 
-	session_start();
+<?php
+session_start();
 
-	//eliminar datos de accesos anteriores
+	//eliminar dades d'accessos anteriors
 	
 	
-	//acciones a realizar al entrar en la aplicación
+	//accions a realitzar en entrar a l'aplicació
