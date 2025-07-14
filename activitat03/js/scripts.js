@@ -1,18 +1,19 @@
-//activar listener del botó de baixa de totes les persones (si no s'ha utilitzat un onclick en línia)
-
-//activar listener dels botons de modificació de persona (si no s'ha utilitzat un onclick en línia)
-
-
-//definir funció de confirmació de baixa
 
 //definir funció per traslladar les dades de la persona a modificar al formulari ocult
-function modificarPersones() {
+function modificarPersones(button) {
+
+	const tr = button.closest('tr');
+	
 	//situar-nos en l'etiqueta tr que correspongui a la fila on es troba el botó
-
-	//recuperar les dades de la persona
-
+	const nif = tr.querySelector('.nif').value;
+	const nom = tr.querySelector('.nom').value;
+	const direccio = tr.querySelector('.direccio').value;
+	
 	//traslladar les dades al formulari ocult
+	document.querySelector('[name=nifModi]').value = nif;
+	document.querySelector('[name=nomModi]').value = nom;
+	document.querySelector('[name=direccioModi]').value = direccio;
 
 	//submit del formulari
-
+	document.querySelector('#formulariModi').submit();
 }

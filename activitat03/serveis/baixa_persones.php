@@ -1,12 +1,13 @@
 <?php
 session_start();
 
-//recuperar les persones de l'array
+$missatge = "Totes les persones han estat donades de baixa correctament.";
 
-//inicialitzar l'array
+//compactarem en un array les variables php que es mostren en el document HTML i que corresponguin a l'operativa d'alta
+$_SESSION["dades"] = compact("missatge");
 
-//compactarem en un array l'array buit de persones
-
-//Traslladar el contingut de l'array $persones a la variable de sessió
+//Assignar una array buida a la variable de sessió $persones 
+$_SESSION['persones'] = [];
 
 //Retornar a la pàgina principal
+header("Location: ../persones.php");

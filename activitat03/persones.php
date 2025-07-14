@@ -1,14 +1,14 @@
 <?php
-session_start();
-
-
 //Extreure les dades de la variable de sessió que utilitzarem en el document html
-
+session_start();
+$persones = $_SESSION["persones"] ?? [];
+ksort($persones);
+if (isset($_SESSION["dades"])) extract($_SESSION["dades"]);
 ?>
 <html>
 
 <head>
-	<title>PLA03: MANTENIMENT DE PERSONES</title>
+	<title>PLA03: GESTIÓ DE PERSONES</title>
 	<meta charset='UTF-8'>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/estils.css">
@@ -16,31 +16,31 @@ session_start();
 
 <body>
 	<main>
-		<h1 class='centrar'>PLA03: MANTENIMENT DE PERSONES</h1>
+		<h1 class='centrar'>PLA03: GESTIÓ DE PERSONES</h1>
 		<br>
 		<form method='post' action='serveis/alta_persona.php'>
 			<div class="row mb-3">
 				<label for="nif" class="col-sm-2 col-form-label">NIF</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="nif" name='nif'>
+					<input type="text" class="form-control" id="nif" name="nif" value='<?= $nif ?? null; ?>'>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="nom" class="col-sm-2 col-form-label">Nom</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="nom" name="nom">
+					<input type="text" class="form-control" id="nom" name="nom" value='<?= $nom ?? null; ?>'>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="direccio" class="col-sm-2 col-form-label">Adreça</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="direccio" name="direccio">
+					<input type="text" class="form-control" id="direccio" name="direccio" value='<?= $direccio ?? null; ?>'>
 				</div>
 			</div>
 			<label for="nom" class="col-sm-2 col-form-label"></label>
-			<button type="submit" class="btn btn-success" name='alta'>Alta persona</button>
+			<button type="submit" class="btn btn-success" name=' alta'>Alta persona</button>
 			<br><br>
-			<span></span>
+			<span><?= $missatge ?? null ?></span>
 		</form><br>
 
 		<table class="table table-striped">
@@ -53,18 +53,20 @@ session_start();
 			<?php
 
 			?>
-			<!--tr>
-			<td>40000000A</td>
-			<td><input type='text' value='O-Ren Ishii' class='nom'></td>
-			<td><input type='text' value='Graveyard avenue, 66' class='direccio'></td>
-			<td>
-			<form method='post' action='#'>
-			<input type='hidden' name='nifbaixa' value='40000000A'>
-			<button type="submit" class="btn btn-warning" name='baixaPersona'>Baixa</button>
-			</form>
-			<button type="button" class="btn btn-primary" name='modiPersona'>Modificar</button>
-			</td>
-			</tr-->
+			<?php foreach ($persones as $nif => $persona) : ?>
+				<tr>
+					<td><input type='text' value='<?= $nif ?>' class='nif' disabled></td>
+					<td><input type='text' value='<?= $persona['nom'] ?>' class='nom'></td>
+					<td><input type='text' value='<?= $persona['direccio'] ?>' class='direccio'></td>
+					<td>
+						<form method='post' action='serveis/baixa_persona.php'>
+							<input type='hidden' name='nifBaixa' value='<?= $nif ?>'>
+							<button type="submit" class="btn btn-warning" name='baixaPersona'>Baixa</button>
+						</form>
+						<button type="button" class="btn btn-primary" name='modiPersona' onclick="modificarPersones(this)">Modificar</button>
+					</td>
+				</tr>
+			<?php endforeach; ?>
 		</table>
 
 		<form method='post' action='serveis/baixa_persones.php' id='formulariobaixa'>
@@ -73,7 +75,7 @@ session_start();
 		</form>
 
 		<!--FORMULARI OCULT PER A LA MODIFICACIÓ-->
-		<form method='post' action='serveis/modificacionpersona.php' id='formularioModi'>
+		<form method='post' action='serveis/modificacio_persona.php' id='formulariModi'>
 			<input type='hidden' name='nifModi'>
 			<input type='hidden' name='nomModi'>
 			<input type='hidden' name="direccioModi">
@@ -86,4 +88,4 @@ session_start();
 </body>
 
 </html>
-<?php echo ("<pre>" . print_r($persones, true) . "</pre>"); ?>
+<?php echo ("<pre>" . print_r($_SESSION, true) . "</pre>"); ?>
