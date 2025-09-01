@@ -1,0 +1,54 @@
+---
+config:
+  look: classic
+  theme: default
+---
+erDiagram
+	Professor {
+		Char(9) NIF PK
+        Varchar(40) Nom
+        Varchar(80) Cognoms
+        Varchar(255) Adreça
+        Varchar(20) Telèfon
+        Varchar(255) Email UK
+        Varchar(20) Usuari
+        Varchar(255) Password
+	}
+	Alumne {
+		Char(9) NIF PK
+        Varchar(40) Nom
+        Varchar(80) Cognoms
+        Varchar(255) Adreça
+        Varchar(20) Telèfon_Alum
+        Varchar(255) Email_Alum UK
+        Varchar(120) Nom_Tutor
+        Varchar(255) Email_Tutor
+	}
+    Assignatura {
+        Char(5) Codi PK
+        Varchar(40) Nom
+        Varchar(255) Descripció
+        Int Curs
+        Char(9) Prof_NIF FK
+    }
+    Classe {
+        Int Id_Classe PK
+        Char(5) Codi_Assignaura FK
+        Date Dia_classe
+        Time Hora_inici
+        Int Durada_minuts
+    }
+    Professor one to zero or more Assignatura: Imparteix 
+    Alumne one to one or more Matrícula: "S'ha inscrit"
+    Assignatura one to zero or more Matrícula: "S'ha inscrit"
+    Assignatura one to zero or more Classe: "Es dona"
+    Matrícula {
+        Char(9) NIF_Alumne PK,FK
+        Char(5) Codi_Assignatura PK,FK
+    }
+    Alumne zero or more to zero or more Assistència: Assisteix
+    Classe zero or more to zero or more Assistència: Assisteix
+    Assistència {
+        Char(9) NIF_Alumne PK,FK
+        Char(5) Codi_Classe PK,FK
+    }
