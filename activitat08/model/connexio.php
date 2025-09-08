@@ -5,7 +5,7 @@ class Database
 	protected $connexio;
 	public function __construct()
 	{
-		$this->connexio = new mysqli('localhost', 'root', 'pass', 'biblioteca');
+		$this->connexio = new mysqli('127.0.0.1', 'root', 'pass', 'biblioteca');
 		$this->connexio->set_charset('utf8');
 	}
 }
