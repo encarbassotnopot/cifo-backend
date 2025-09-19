@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+$persones = $_SESSION['dadespersones'] ?? [];
+if (isset($_SESSION['dadesbanc']))
+	extract($_SESSION['dadesbanc']);
+if (isset($_SESSION['paginacio']))
+	extract($_SESSION['paginacio']);
 
 ?>
 <html>
@@ -13,42 +20,48 @@
 
 <body>
 	<div class='container'>
-		<form id='formulari' method='post' action=''>
+		<form id='formulari' method='post' action='/serveis/controladors/frontcontroller.php'>
 			<input type='hidden' id='idpersona' name='idpersona' value=''>
 			<div class="row mb-3">
 				<label for="nif" class="col-sm-2 col-form-label">NIF</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="nif" name='nif' value=''>
+					<input type="text" class="form-control" id="nif" name=nif
+						value='<?= $dadespersona['nif'] ?? null; ?>'>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="nom" class="col-sm-2 col-form-label">Nom</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="nom" name="nom" value="">
+					<input type="text" class="form-control" id="nom" name=nom
+						value='<?= $dadespersona['nom'] ?? null; ?>'>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="cognoms" class="col-sm-2 col-form-label">Cognoms</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="cognoms" name="cognoms" value="">
+					<input type="text" class="form-control" id="cognoms" name=cognoms
+						value='<?= $dadespersona['cognoms'] ?? null; ?>'>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="direccio" class="col-sm-2 col-form-label">Direcció</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="direccio" name="direccio" value="">
+					<input type="text" class="form-control" id="direccio" name=direccio
+						value='<?= $dadespersona['direccio'] ?? null; ?>'>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="telefon" class="col-sm-2 col-form-label">Telèfon</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="telefon" name="telefon" value="">
+					<input type="text" class="form-control" id="telefon" name=telefon
+						value='<?= $dadespersona['telefon'] ?? null; ?>'>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="email" class="col-sm-2 col-form-label">Email</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control" id="email" name="email" value="">
+					<input type="email" class="form-control" id="email" name=email
+						value='<?= $dadespersona['email'] ?? null; ?>'>
 				</div>
 			</div>
 			<label class="col-sm-2 col-form-label"></label>
@@ -59,16 +72,20 @@
 			<button type="reset" class="btn btn-success">Neteja</button>
 			<label class="col-sm-2 col-form-label"></label>
 			<hr>
-			<p class='missatges'></p>
+			<p class='missatges'><?= $missatges ?? null; ?></p>
 		</form><br><br>
-		<form method='get' action='' class="d-flex justify-content-center">
+		<form method='get' action='/serveis/controladors/frontcontroller.php' class="d-flex justify-content-center">
 			<div class="row col-4 mb-3">
 				<label class="form-label">Persones a mostrar</label>
 				<select class="form-select" name='mostrar' onchange="this.form.submit()">
-					<option>5</option>
-					<option>10</option>
-					<option>15</option>
-					<option>20</option>
+					<option <?php if ($mostrar == 5)
+						echo "selected"; ?>>5</option>
+					<option <?php if ($mostrar == 10)
+						echo "selected"; ?>>10</option>
+					<option <?php if ($mostrar == 15)
+						echo "selected"; ?>>15</option>
+					<option <?php if ($mostrar == 20)
+						echo "selected"; ?>>20</option>
 				</select>
 			</div>
 		</form>
@@ -78,20 +95,29 @@
 				<th>nom</th>
 				<th>Cognoms</th>
 			</tr>
-			<tr data-id='id de la persona a mostrar'>
-				<td>Nif de la persona</td>
-				<td>Nom de la persona</td>
-				<td>Cognoms de la persona</td>
-			</tr>
+			<?php foreach ($persones as $p) {
+				echo ("<tr onclick='consultaPersona(this)' data-id='" . $p["idpersona"] . "'>");
+				echo ("<td>" . $p['nif'] . "</td>");
+				echo ("<td>" . $p['nom'] . "</td>");
+				echo ("<td>" . $p['cognoms'] . "</td>");
+				echo ("</tr>");
+			} ?>
 		</table>
 		<div class="enllacos d-flex justify-content-center">
 			<p>
-				<a class='ressaltar' href=''>número de pàgina</a>
+				<?php
+				for ($i = 1; $i <= $enllacos; $i++) {
+					if ($i == $pagina)
+						echo "<a class='ressaltar' href='?pagina=$i&mostrar=$mostrar'>$i</a>";
+					else
+						echo "<a href='?pagina=$i&mostrar=$mostrar'>$i</a>";
+				}
+				?>
 			</p>
 		</div>
 	</div>
 	</div>
-	<form id='formconsulta' method='post' action=''>
+	<form id='formconsulta' method='post' action='/serveis/controladors/frontcontroller.php'>
 		<input type='hidden' name='peticio' value='consulta'>
 		<input type='hidden' id='consulta' name='idpersona'>
 	</form>
