@@ -28,4 +28,15 @@ class Pelicula extends Model
     {
         return new PeliculaFactory();
     }
+
+    public static function alta($datos)
+    {
+        return Pelicula::create([
+            'titulo' => $datos['titulo'],
+            'direccion' => $datos['direccion'],
+            'anio' => $datos['anio'],
+            'sinopsis' => $datos['sinopsis'],
+            'img' => $datos['portada'],
+        ]);
+    }
 }
