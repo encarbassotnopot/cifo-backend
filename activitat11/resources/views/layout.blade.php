@@ -26,9 +26,20 @@
                     <div class="navbar-nav">
                         <a class="nav-link" aria-current="page" href="{{route('vista.peliculas.consulta')}}">Lista de
                             películas</a>
-                        <a class="nav-link" href="{{route('vista.pelicula.alta')}}">Alta película</a>
+                        @auth
+                            <a class="nav-link" href="{{route('vista.pelicula.alta')}}">Alta película</a>
+                        @endauth
+                        @guest
+                            <a class="nav-link" href="{{route('vista.login')}}">Login</a>
+                        @else
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="nav-link" onclick="this.closest('form').submit()" href='#'>Logout</a>
+                            </form>
+                        @endguest
                     </div>
                 </div>
+
             </div>
         </nav>
         <h4 class='text-center'></h4>

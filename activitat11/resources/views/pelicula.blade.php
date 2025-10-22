@@ -22,8 +22,10 @@
                     @endif
                 </div>
                 <br>
-                <a href="{{route('vista.pelicula.mto', [$pelicula->id])}}"
-                    class="btn btn-outline-primary btn-block">Mantenimiento</a>
+                @auth
+                    <a href="{{route('vista.pelicula.mto', [$pelicula->id])}}" class="btn btn-outline-primary
+                            btn-block">Mantenimiento</a>
+                @endauth
                 <a href="/peliculas" class="btn btn-outline-primary btn-block">Volver a listado</a>
             </div>
             <div class='column col-4'>

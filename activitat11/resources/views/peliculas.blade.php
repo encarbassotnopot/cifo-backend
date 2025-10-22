@@ -24,8 +24,10 @@
                         <a href="{{route('vista.pelicula.detalle', ['id' => $pelicula->id])}}"
                             class="btn btn-outline-primary btn-block">Ver
                             más...</a>
-                        <a href="{{route('vista.pelicula.mto', ['pelicula' => $pelicula])}}"
-                            class="btn btn-outline-primary btn-block">Mantenimiento</a>
+                        @auth
+                            <a href="{{route('vista.pelicula.mto', [$pelicula->id])}}" class="btn btn-outline-primary
+                                                btn-block">Mantenimiento</a>
+                        @endauth
                     </div>
                 </div>
             @empty
