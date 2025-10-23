@@ -22,4 +22,10 @@ class Paciente extends Model
         ]);
         return $paciente;
     }
+    public static function consulta()
+    {
+        return Paciente::orderBy('nombre', 'ASC', 'apellidos', 'ASC')->get();
+    }
+
+
 }

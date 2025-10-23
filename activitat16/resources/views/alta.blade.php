@@ -18,7 +18,7 @@
             </div>
         @enderror
         <div class="mb-3">
-            <label class="form-label">Nombre:</label>
+            <label class="form-label">Nom:</label>
             <input type="text" class="form-control" id="nombre" name="nombre">
         </div>
         @error('nombre')
@@ -27,7 +27,7 @@
             </div>
         @enderror
         <div class="mb-3">
-            <label class="form-label">Apellidos:</label>
+            <label class="form-label">Cognoms:</label>
             <input type="text" class="form-control" id="apellidos" name="apellidos">
         </div>
         @error('apellidos')
@@ -36,7 +36,7 @@
             </div>
         @enderror
         <div class="mb-3">
-            <label class="form-label">Fecha Ingreso:</label>
+            <label class="form-label">Data d'ingrés:</label>
             <input type="date" class="form-control" id="fechaingreso" name="fechaingreso">
         </div>
         @error('fechaingreso')
@@ -45,7 +45,7 @@
             </div>
         @enderror
         <br>
-        <button type="submit" id="alta" name="alta" class="btn btn-success">Alta paciente</button>
+        <button type="submit" id="alta" name="alta" class="btn btn-success">Alta pacient</button>
         <br><br>
         <h4>
 

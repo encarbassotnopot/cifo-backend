@@ -4,26 +4,31 @@
     <h2>Mantenimiento paciente</h2>
     <br>
     <form id='formulario' method='post' action="">
-        <input type="hidden" id='idpaciente' name='idpaciente'>
+        @csrf
+        @method('PUT')
+        <input type="hidden" id='idpaciente' value="{{ $paciente->idpaciente ?? null }}" name='idpaciente'>
         <div class="mb-3">
             <label class="form-label">NIF:</label>
-            <input type="text" class="form-control" id="nif" name="nif">
+            <input type="text" class="form-control" id="nif" value="{{ $paciente->nif ?? null }}" name="nif">
         </div>
         <div class="mb-3">
-            <label class="form-label">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre">
+            <label class="form-label">Nom:</label>
+            <input type="text" class="form-control" id="nombre" value="{{ $paciente->nombre ?? null }}" name="nombre">
         </div>
         <div class="mb-3">
-            <label class="form-label">Apellidos:</label>
-            <input type="text" class="form-control" id="apellidos" name="apellidos">
+            <label class="form-label">Cognoms:</label>
+            <input type="text" class="form-control" id="apellidos" value="{{ $paciente->apellidos ?? null }}"
+                name="apellidos">
         </div>
         <div class="mb-3">
-            <label class="form-label">Fecha Ingreso:</label>
-            <input type="date" class="form-control" id="fechaingreso" name="fechaingreso">
+            <label class="form-label">Data Ingrés:</label>
+            <input type="date" class="form-control" id="fechaingreso" value="{{ $paciente->fechaingreso ?? null }}"
+                name="fechaingreso">
         </div>
         <div class="mb-3">
-            <label class="form-label">Fecha Alta Médica:</label>
-            <input type="date" class="form-control" id="fechaalta" name="fechaalta">
+            <label class="form-label">Data Alta Mèdica:</label>
+            <input type="date" class="form-control" id="fechaalta" value="{{ $paciente->fechaalta ?? null }}"
+                name="fechaalta">
         </div>
         <br>
 

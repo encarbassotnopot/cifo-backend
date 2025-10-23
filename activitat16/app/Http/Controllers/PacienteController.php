@@ -26,4 +26,32 @@ class PacienteController extends Controller
         return redirect('alta')->with('success', $datos);
 
     }
+
+    public function consultapacientes()
+    {
+        $datos['pacientes'] = Paciente::consulta();
+        return view('consulta')->with($datos);
+    }
+
+    public function consultapaciente(Paciente $paciente)
+    {
+        $datos['paciente'] = $paciente;
+        return view('mantenimiento')->with($datos);
+    }
+
+    public function modificacion(Paciente $paciente)
+    {
+        $datos = request()->all();
+        $rules = array(
+            'nif' => 'required|unique:paciente,nif',
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'fechaingreso' => 'required',
+        );
+        $validator = Validator::make($paciente, $rules);
+        if ($validator->fails()) {
+            return redirect('mantenimiento')->withErrors($validator)->withInput();
+        }
+        $paciente->update($datos);
+    }
 }

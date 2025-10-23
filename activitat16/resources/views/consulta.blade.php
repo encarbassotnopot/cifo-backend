@@ -18,23 +18,28 @@
         </div>
     </form>
     <br>
-
-    <table id='pacientes' class="table table-striped">
-        <tr>
-            <th>NIF</th>
-            <th>NOMBRE</th>
-            <th>APELLIDOS</th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>nif</td>
-            <td>nombre</td>
-            <td>apellidos</td>
-            <td>
-                <form action="" method='GET'>
-                    <input type='submit' value='Detalle paciente'>
-                </form>
-            </td>
-        </tr>
-    </table>
+    @empty ($pacientes)
+        <h4>Sense Dades</h4>
+    @else
+        <table id='pacientes' class="table table-striped">
+            <tr>
+                <th>NIF</th>
+                <th>Nom</th>
+                <th>Cognoms</th>
+                <th></th>
+            </tr>
+            @foreach ($pacientes as $paciente)
+                <tr>
+                    <td>{{ $paciente['nif'] }}</td>
+                    <td>{{ $paciente['nombre'] }}</td>
+                    <td>{{ $paciente['apellidos'] }}</td>
+                    <td>
+                        <form action="{{ route('consultapaciente', [$paciente['idpaciente']]) }}" method='GET'>
+                            <input type='submit' value='Detall pacient'>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+    @endempty
 @endsection

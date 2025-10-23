@@ -14,7 +14,7 @@ Route::get('/mantenimiento', [
 ])->name('vistas.mantenimiento');
 
 Route::get('/pacientes', [PacienteController::class, 'consultapacientes'])->name('consultapacientes');
-Route::get('/pacientes/{idpaciente}', [PacienteController::class, 'consultapaciente'])->name('consultapaciente');
+Route::get('/pacientes/{paciente}', [PacienteController::class, 'consultapaciente'])->name('consultapaciente');
 Route::post('/pacientes', [PacienteController::class, 'alta'])->name('altapaciente');
 Route::put('/pacientes/{paciente?}', [PacienteController::class, 'modificacion'])->name('mantenimiento');
 Route::delete('/pacientes/{paciente?}', [PacienteController::class, 'baja'])->name('mantenimiento');
